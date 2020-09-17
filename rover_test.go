@@ -44,6 +44,12 @@ func TestWrapsIfGoingEast(t *testing.T) {
 	assertEquals(t, "2:0:E", Execute("RMMMMMMMMMMMM"))
 }
 
+func TestMovingWest(t *testing.T) {
+	assertEquals(t, "9:0:W", Execute("LM"))
+	assertEquals(t, "5:0:W", Execute("LMMMMM"))
+	assertEquals(t, "0:0:W", Execute("LMMMMMMMMMM"))
+}
+
 func assertEquals(t *testing.T, expected string, result string) {
 	if result != expected {
 		t.Errorf("Expected '%s' but got '%s'", expected, result)
