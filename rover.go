@@ -10,6 +10,9 @@ func Execute(commands string) string {
 	for _, command := range commands {
 		if command == 'M' {
 			y++
+			if y > 9 {
+				y = 0
+			}
 		}
 
 	}
