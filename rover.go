@@ -44,6 +44,11 @@ func Execute(commands string) string {
 				if x < 0 {
 					x = 9
 				}
+			} else if direction == "S" {
+				y--
+				if y < 0 {
+					y = 9
+				}
 			} else {
 
 				y++
