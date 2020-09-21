@@ -39,28 +39,44 @@ func Execute(commands string) string {
 
 		if command == 'M' {
 			if direction == "E" {
-				pos.x++
-				if pos.x > 9 {
-					pos.x = 0
-				}
+				moveEast(&pos)
 			} else if direction == "W" {
-				pos.x--
-				if pos.x < 0 {
-					pos.x = 9
-				}
+				moveWest(&pos)
 			} else if direction == "S" {
-				pos.y--
-				if pos.y < 0 {
-					pos.y = 9
-				}
+				moveSouth(&pos)
 			} else {
-				pos.y++
-				if pos.y > 9 {
-					pos.y = 0
-				}
+				moveNorth(&pos)
 			}
 		}
 
 	}
 	return fmt.Sprintf("%d:%d:%s", pos.x, pos.y, direction)
+}
+
+func moveEast(pos *Point) {
+	pos.x++
+	if pos.x > 9 {
+		pos.x = 0
+	}
+}
+
+func moveWest(pos *Point) {
+	pos.x--
+	if pos.x < 0 {
+		pos.x = 9
+	}
+}
+
+func moveSouth(pos *Point) {
+	pos.y--
+	if pos.y < 0 {
+		pos.y = 9
+	}
+}
+
+func moveNorth(pos *Point) {
+	pos.y++
+	if pos.y > 9 {
+		pos.y = 0
+	}
 }
