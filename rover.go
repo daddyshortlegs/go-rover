@@ -45,16 +45,8 @@ func Execute(commands string) string {
 }
 
 func getDirection(directionIndex int) string {
-	if directionIndex == 0 {
-		return "N"
-	}
-	if directionIndex == 1 {
-		return "E"
-	}
-	if directionIndex == 2 {
-		return "S"
-	}
-	return "W"
+	var m = map[int]string{0: "N", 1: "E", 2: "S", 3: "W"}
+	return m[directionIndex]
 }
 
 func moveEast(pos *Point) {
