@@ -12,7 +12,6 @@ type Point struct {
 func Execute(commands string) string {
 	pos := Point{0, 0}
 	directionIndex := 0
-	direction := "N"
 
 	for _, command := range commands {
 		if command == 'R' {
@@ -27,15 +26,7 @@ func Execute(commands string) string {
 			}
 		}
 
-		if directionIndex == 0 {
-			direction = "N"
-		} else if directionIndex == 1 {
-			direction = "E"
-		} else if directionIndex == 2 {
-			direction = "S"
-		} else if directionIndex == 3 {
-			direction = "W"
-		}
+		direction := getDirection(directionIndex)
 
 		if command == 'M' {
 			if direction == "E" {
@@ -50,7 +41,20 @@ func Execute(commands string) string {
 		}
 
 	}
-	return fmt.Sprintf("%d:%d:%s", pos.x, pos.y, direction)
+	return fmt.Sprintf("%d:%d:%s", pos.x, pos.y, getDirection(directionIndex))
+}
+
+func getDirection(directionIndex int) string {
+	if directionIndex == 0 {
+		return "N"
+	}
+	if directionIndex == 1 {
+		return "E"
+	}
+	if directionIndex == 2 {
+		return "S"
+	}
+	return "W"
 }
 
 func moveEast(pos *Point) {
