@@ -4,9 +4,13 @@ import (
 	"fmt"
 )
 
+type Point struct {
+	x int
+	y int
+}
+
 func Execute(commands string) string {
-	x := 0
-	y := 0
+	pos := Point{0, 0}
 	directionIndex := 0
 	direction := "N"
 
@@ -35,29 +39,28 @@ func Execute(commands string) string {
 
 		if command == 'M' {
 			if direction == "E" {
-				x++
-				if x > 9 {
-					x = 0
+				pos.x++
+				if pos.x > 9 {
+					pos.x = 0
 				}
 			} else if direction == "W" {
-				x--
-				if x < 0 {
-					x = 9
+				pos.x--
+				if pos.x < 0 {
+					pos.x = 9
 				}
 			} else if direction == "S" {
-				y--
-				if y < 0 {
-					y = 9
+				pos.y--
+				if pos.y < 0 {
+					pos.y = 9
 				}
 			} else {
-
-				y++
-				if y > 9 {
-					y = 0
+				pos.y++
+				if pos.y > 9 {
+					pos.y = 0
 				}
 			}
 		}
 
 	}
-	return fmt.Sprintf("%d:%d:%s", x, y, direction)
+	return fmt.Sprintf("%d:%d:%s", pos.x, pos.y, direction)
 }
