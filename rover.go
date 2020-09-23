@@ -4,11 +4,6 @@ import (
 	"fmt"
 )
 
-type Point struct {
-	x int
-	y int
-}
-
 func Execute(commands string) string {
 	pos := Point{0, 0}
 	directionIndex := 0
@@ -30,13 +25,13 @@ func Execute(commands string) string {
 
 		if command == 'M' {
 			if direction == "E" {
-				moveEast(&pos)
+				pos.moveEast()
 			} else if direction == "W" {
-				moveWest(&pos)
+				pos.moveWest()
 			} else if direction == "S" {
-				moveSouth(&pos)
+				pos.moveSouth()
 			} else {
-				moveNorth(&pos)
+				pos.moveNorth()
 			}
 		}
 
@@ -47,32 +42,4 @@ func Execute(commands string) string {
 func getDirection(directionIndex int) string {
 	var m = map[int]string{0: "N", 1: "E", 2: "S", 3: "W"}
 	return m[directionIndex]
-}
-
-func moveEast(pos *Point) {
-	pos.x++
-	if pos.x > 9 {
-		pos.x = 0
-	}
-}
-
-func moveWest(pos *Point) {
-	pos.x--
-	if pos.x < 0 {
-		pos.x = 9
-	}
-}
-
-func moveSouth(pos *Point) {
-	pos.y--
-	if pos.y < 0 {
-		pos.y = 9
-	}
-}
-
-func moveNorth(pos *Point) {
-	pos.y++
-	if pos.y > 9 {
-		pos.y = 0
-	}
 }
