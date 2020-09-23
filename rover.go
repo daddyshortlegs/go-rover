@@ -4,10 +4,6 @@ import (
 	"fmt"
 )
 
-type Compass struct {
-	directionIndex int
-}
-
 func Execute(commands string) string {
 	pos := Point{0, 0}
 
@@ -15,18 +11,12 @@ func Execute(commands string) string {
 
 	for _, command := range commands {
 		if command == 'R' {
-			compass.directionIndex++
-			if compass.directionIndex > 3 {
-				compass.directionIndex = 0
-			}
+			compass.right()
 		} else if command == 'L' {
-			compass.directionIndex--
-			if compass.directionIndex < 0 {
-				compass.directionIndex = 3
-			}
+			compass.left()
 		}
 
-		direction := getDirection(compass.directionIndex)
+		direction := compass.getDirection()
 
 		if command == 'M' {
 			if direction == "E" {
@@ -41,10 +31,5 @@ func Execute(commands string) string {
 		}
 
 	}
-	return fmt.Sprintf("%d:%d:%s", pos.x, pos.y, getDirection(compass.directionIndex))
-}
-
-func getDirection(directionIndex int) string {
-	var m = map[int]string{0: "N", 1: "E", 2: "S", 3: "W"}
-	return m[directionIndex]
+	return fmt.Sprintf("%d:%d:%s", pos.x, pos.y, compass.getDirection())
 }
