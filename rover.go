@@ -18,18 +18,21 @@ func Execute(commands string) string {
 
 		direction := compass.getDirection()
 
+		m := makeDirectionMap(pos)
+
 		if command == 'M' {
-			if direction == "E" {
-				pos.moveEast()
-			} else if direction == "W" {
-				pos.moveWest()
-			} else if direction == "S" {
-				pos.moveSouth()
-			} else {
-				pos.moveNorth()
-			}
+			m[direction]()
 		}
 
 	}
 	return fmt.Sprintf("%d:%d:%s", pos.x, pos.y, compass.getDirection())
+}
+
+func makeDirectionMap(pos Point) map[string]func() {
+	m := make(map[string]func())
+	m["E"] = pos.moveEast
+	m["W"] = pos.moveWest
+	m["N"] = pos.moveNorth
+	m["S"] = pos.moveSouth
+	return m
 }
