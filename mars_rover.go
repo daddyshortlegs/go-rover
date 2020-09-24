@@ -4,24 +4,36 @@ import (
 	"fmt"
 )
 
+type Rover struct {
+	pos     Point
+	bearing Bearing
+}
+
 func Execute(commands string) string {
 	pos := Point{0, 0}
 
-	compass := Compass{0}
+	rover := Rover{}
 
 	for _, command := range commands {
 		if command == 'R' {
-			compass.right()
+			turnRight(&rover)
 		} else if command == 'L' {
-			compass.left()
+			turnLeft(&rover)
 		}
 
 		if command == 'M' {
-			move(&pos, compass.getDirection())
+			move(&pos, rover.bearing.getDirection())
 		}
-
 	}
-	return fmt.Sprintf("%d:%d:%s", pos.x, pos.y, compass.getDirection())
+	return fmt.Sprintf("%d:%d:%s", pos.x, pos.y, rover.bearing.getDirection())
+}
+
+func turnLeft(rover *Rover) {
+	rover.bearing.left()
+}
+
+func turnRight(rover *Rover) {
+	rover.bearing.right()
 }
 
 func move(pos *Point, direction string) {

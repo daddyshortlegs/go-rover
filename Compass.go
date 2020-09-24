@@ -1,24 +1,24 @@
 package rover
 
-type Compass struct {
+type Bearing struct {
 	directionIndex int
 }
 
-func (compass *Compass) left() {
-	compass.directionIndex--
-	if compass.directionIndex < 0 {
-		compass.directionIndex = 3
+func (bearing *Bearing) left() {
+	bearing.directionIndex--
+	if bearing.directionIndex < 0 {
+		bearing.directionIndex = 3
 	}
 }
 
-func (compass *Compass) right() {
-	compass.directionIndex++
-	if compass.directionIndex > 3 {
-		compass.directionIndex = 0
+func (bearing *Bearing) right() {
+	bearing.directionIndex++
+	if bearing.directionIndex > 3 {
+		bearing.directionIndex = 0
 	}
 }
 
-func (compass *Compass) getDirection() string {
+func (bearing *Bearing) getDirection() string {
 	var m = map[int]string{0: "N", 1: "E", 2: "S", 3: "W"}
-	return m[compass.directionIndex]
+	return m[bearing.directionIndex]
 }
