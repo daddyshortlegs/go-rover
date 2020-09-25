@@ -15,9 +15,37 @@ func (rover *Rover) turnRight() {
 
 func (rover *Rover) move(direction string) {
 	m := make(map[string]func())
-	m["E"] = rover.pos.moveEast
-	m["W"] = rover.pos.moveWest
-	m["N"] = rover.pos.moveNorth
-	m["S"] = rover.pos.moveSouth
+	m["E"] = rover.moveEast
+	m["W"] = rover.moveWest
+	m["N"] = rover.moveNorth
+	m["S"] = rover.moveSouth
 	m[direction]()
+}
+
+func (rover *Rover) moveEast() {
+	rover.pos = rover.pos.Add(Point{1, 0})
+	if rover.pos.x > 9 {
+		rover.pos.x = 0
+	}
+}
+
+func (rover *Rover) moveWest() {
+	rover.pos = rover.pos.Add(Point{-1, 0})
+	if rover.pos.x < 0 {
+		rover.pos.x = 9
+	}
+}
+
+func (rover *Rover) moveSouth() {
+	rover.pos = rover.pos.Add(Point{0, -1})
+	if rover.pos.y < 0 {
+		rover.pos.y = 9
+	}
+}
+
+func (rover *Rover) moveNorth() {
+	rover.pos = rover.pos.Add(Point{0, 1})
+	if rover.pos.y > 9 {
+		rover.pos.y = 0
+	}
 }
