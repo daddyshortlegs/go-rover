@@ -5,8 +5,16 @@ type Point struct {
 	y int
 }
 
+func (pos Point) Add(other Point) Point {
+	return Point{
+		x: pos.x + other.x,
+		y: pos.y + other.y,
+	}
+}
+
 func (pos *Point) moveEast() {
-	pos.x++
+	*pos = pos.Add(Point{1, 0})
+	//pos.x++
 	if pos.x > 9 {
 		pos.x = 0
 	}
