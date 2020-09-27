@@ -13,7 +13,7 @@ func Execute(commands string) string {
 		} else if command == 'L' {
 			rover.turnLeft()
 		} else if command == 'M' {
-			rover.move(rover.bearing.getDirection())
+			rover.move()
 		}
 	}
 	return fmt.Sprintf("%d:%d:%s", rover.pos.x, rover.pos.y, rover.bearing.getDirection())

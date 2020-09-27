@@ -13,13 +13,13 @@ func (rover *Rover) turnRight() {
 	rover.bearing.right()
 }
 
-func (rover *Rover) move(direction string) {
+func (rover *Rover) move() {
 	m := make(map[string]func())
 	m["E"] = rover.moveEast
 	m["W"] = rover.moveWest
 	m["N"] = rover.moveNorth
 	m["S"] = rover.moveSouth
-	m[direction]()
+	m[rover.bearing.getDirection()]()
 }
 
 func (rover *Rover) moveEast() {
