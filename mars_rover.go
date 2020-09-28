@@ -1,8 +1,8 @@
 package rover
 
 func Execute(commands string) string {
-	rover := Rover{}
-
+	grid := Grid{maxX: 9, maxY: 9}
+	var rover = Rover{grid: grid}
 	for _, command := range commands {
 		if command == 'R' {
 			rover.turnRight()

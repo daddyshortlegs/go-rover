@@ -5,6 +5,7 @@ import "fmt"
 type Rover struct {
 	pos     Point
 	bearing Bearing
+	grid    Grid
 }
 
 func (rover *Rover) turnLeft() {
@@ -26,34 +27,30 @@ func (rover *Rover) move() {
 
 func (rover *Rover) moveEast() {
 	rover.pos = rover.pos.Add(Point{1, 0})
-	if rover.outOfBounds(rover.pos) {
-		rover.pos.x = 0
+	if rover.grid.outOfBounds(rover.pos) {
+		rover.pos = Point{0, rover.pos.y}
 	}
 }
 
 func (rover *Rover) moveWest() {
 	rover.pos = rover.pos.Add(Point{-1, 0})
-	if rover.outOfBounds(rover.pos) {
-		rover.pos.x = 9
+	if rover.grid.outOfBounds(rover.pos) {
+		rover.pos = Point{9, rover.pos.y}
 	}
 }
 
 func (rover *Rover) moveSouth() {
 	rover.pos = rover.pos.Add(Point{0, -1})
-	if rover.outOfBounds(rover.pos) {
-		rover.pos.y = 9
+	if rover.grid.outOfBounds(rover.pos) {
+		rover.pos = Point{rover.pos.x, 9}
 	}
 }
 
 func (rover *Rover) moveNorth() {
 	rover.pos = rover.pos.Add(Point{0, 1})
-	if rover.outOfBounds(rover.pos) {
-		rover.pos.y = 0
+	if rover.grid.outOfBounds(rover.pos) {
+		rover.pos = Point{rover.pos.x, 0}
 	}
-}
-
-func (rover *Rover) outOfBounds(Point) bool {
-	return rover.pos.x > 9 || rover.pos.x < 0 || rover.pos.y < 0 || rover.pos.y > 9
 }
 
 func (rover *Rover) String() string {
