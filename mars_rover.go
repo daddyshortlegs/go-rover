@@ -1,9 +1,5 @@
 package rover
 
-import (
-	"fmt"
-)
-
 func Execute(commands string) string {
 	rover := Rover{}
 
@@ -16,5 +12,5 @@ func Execute(commands string) string {
 			rover.move()
 		}
 	}
-	return fmt.Sprintf("%d:%d:%s", rover.pos.x, rover.pos.y, rover.bearing.getDirection())
+	return rover.String()
 }
